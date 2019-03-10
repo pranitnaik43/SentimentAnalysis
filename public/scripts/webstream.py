@@ -7,14 +7,15 @@ import emoji
 import preprocessor as p
 #from googletrans import Translator
 import train as t
-from py_translator import Translator
+#from py_translator import Translator
+from mtranslate import translate
 
 ckey="8VLe8MUqkihVa9U3qYxC2gKEH"
 csecret="E1VtWGJc8iwruA3PtdI4yKr31zfXzy7crY2fDmZnpkqPNyyq7N"
 atoken="1084819911690670080-0WYnWemEzkRcMHVn7rtIoGlc5X8fBg"
 asecret="L45s4CKveIfj8H1We6tZbZn7JkQn39JHaNUMPAcnw8yQ3"
 
-translator=Translator()
+#translator=Translator()
 class listener(StreamListener):
 
     '''def on_data(self, data):
@@ -40,14 +41,18 @@ class listener(StreamListener):
 
         tweet=emoji.demojize(tweet)
         tweet=p.clean(tweet)
+        tweet=translate(tweet,"en","auto")
         #tweet=translator.translate(tweet)
-        tweet=Translator().translate(text=tweet,dest="en").text
+        #tweet=Translator().translate(text=tweet,dest="en").text
         #tweet=tweet.text
-
-        sentiment_value,confidence=t.sentiment(tweet)
-        print(tweet,sentiment_value,confidence,"\n\n\n")
-        f=open("twitter-out.txt",'a')
-        f.write(sentiment_value+"\n")
+        #tweet=tweet.encode("utf-8")
+        if(tweet==''):
+            pass
+        else:
+            sentiment_value,confidence=t.sentiment(tweet)
+            print(tweet,sentiment_value,confidence,"\n\n\n")
+            #f=open("twitter-out.txt",'a')
+            #f.write(sentiment_value+"\n")
             
                 
         #except:

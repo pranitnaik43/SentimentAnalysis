@@ -60,8 +60,8 @@ from selenium.webdriver.common.keys import Keys
 import train as t
 import preprocessor as p
 import emoji
-from googletrans import Translator
-
+#from googletrans import Translator
+from mtranslate import translate
 
 class SeleniumClient(object):
     def __init__(self):
@@ -91,15 +91,16 @@ class SeleniumClient(object):
 
             #self.browser.quit()
 
-            translator=Translator()
+            #translator=Translator()
 ##            pos_count=0
 ##            neg_count=0
             for tweet in tweets:
                 #print(tweet.text,"\n\n\n")
                 tweet=emoji.demojize(tweet.text)
                 tweet=p.clean(tweet)
-                tweet=translator.translate(tweet)
-                tweet=tweet.text
+                tweet=translate(tweet,"en","auto")
+                #tweet=translator.translate(tweet)
+                #tweet=tweet.text
                 if(tweet==''):
                     pass
                 else:

@@ -52,19 +52,20 @@ class TweetsController extends Controller
         // fclose($myfile);
         $users = Test::all();
         // return $users;
-        $chart = Charts::database($users, 'pie', 'highcharts')
+        // $chart = Charts::database($users, 'pie', 'highcharts')
+        $chart = Charts::create('pie', 'highcharts')
 			      ->title($topic)
                 //   ->elementLabel("Sentiment")
                   ->labels(['positive', 'negative'])
                   ->values([$pos, $neg])
                   ->colors(['#00ff00','#ff0000'])
 			      ->dimensions(800, 500)
-			      ->responsive(false);
+			      ->responsive(true);
 			    //   ->groupByMonth(date('Y'), true);
         return view('chart')->with('chart',$chart);
     }
     public function live(){
-        // $process = new Process('python C:\xampp\htdocs\sentiment\public\scripts\stream.py');
+        // $process = new Process('python C:\xampp\htdocs\sentiment\public\scripts\webstream.py');
         // $process->run();
         // // executes after the command finishes
         // if (!$process->isSuccessful()) {
@@ -72,18 +73,32 @@ class TweetsController extends Controller
         // }
 
         // // return var_dump($process->getOutput());
-        // $sentiment = $process->getOutput();
-        // return $sentiment;
+        // echo $process->getIncrementalOutput();
 
         $process = new Process('python C:\xampp\htdocs\sentiment\public\scripts\webstream.py');
         $process->start();
         foreach ($process as $type => $data) {
             if ($process::OUT === $type) {
                 echo "\nRead from stdout: ".$data;
-            } else { // $process::ERR === $type
+            } 
+            else { // $process::ERR === $type
                 echo "\nRead from stderr: ".$data;
             }
         }
+    }
+    public function livechart(){
+
+        // $chart = Charts::realtime(url('/path/to/json'), 2000, 'gauge', 'google')
+        $chart = Charts::realtime(url('json/values.json'), 2000, 'line', 'highcharts')
+            ->values([65, 0, 100])
+            ->labels(['First', 'Second', 'Third'])
+            ->responsive(false)
+            ->height(300)
+            ->width(0)
+            ->title("Permissions Chart")
+            ->valueName('value'); //This determines the json index for the value
+
+            return view('livechart')->with('chart',$chart);
     }
 }
 
