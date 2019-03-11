@@ -19,6 +19,8 @@ Route::post('display','TweetsController@display');
 Route::get('index/{sentiment}/{topic}','TweetsController@index');
 Route::get('live','TweetsController@live');
 Route::get('livechart', 'TweetsController@livechart');
+Route::get('updateValue', 'TweetsController@updateValue');
+Route::get('updateJSON', 'TweetsController@updateJSON');
 
 //==============<Requirements>=======================
 // Use Symfony Process.

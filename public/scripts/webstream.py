@@ -50,7 +50,10 @@ class listener(StreamListener):
             pass
         else:
             sentiment_value,confidence=t.sentiment(tweet)
-            print(tweet,sentiment_value,confidence,"\n\n\n")
+            print(sentiment_value,"\n")
+            print("j"*500)
+            #print (tweet.encode('utf8')) 
+            #print(tweet.encode('utf8'),sentiment_value,confidence,"\n\n\n")
             #f=open("twitter-out.txt",'a')
             #f.write(sentiment_value+"\n")
             

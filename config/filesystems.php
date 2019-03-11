@@ -48,6 +48,14 @@ return [
             'root' => storage_path('app'),
         ],
 
+        //====================<Storage>====================
+        'chartJSON' => [
+            'driver' => 'local',
+            'root' => storage_path('app/chartJSON'),
+        ],
+        //====================</Storage>====================
+        
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

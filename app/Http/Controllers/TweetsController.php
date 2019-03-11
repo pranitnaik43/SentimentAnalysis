@@ -14,7 +14,7 @@ use Charts;
 use App\Test;
 use DB;
 //====</charts>===============
-
+use Storage;
 
 class TweetsController extends Controller
 {
@@ -60,7 +60,7 @@ class TweetsController extends Controller
                   ->values([$pos, $neg])
                   ->colors(['#00ff00','#ff0000'])
 			      ->dimensions(800, 500)
-			      ->responsive(true);
+			      ->responsive(false);
 			    //   ->groupByMonth(date('Y'), true);
         return view('chart')->with('chart',$chart);
     }
@@ -77,14 +77,35 @@ class TweetsController extends Controller
 
         $process = new Process('python C:\xampp\htdocs\sentiment\public\scripts\webstream.py');
         $process->start();
+        // $process->setTimeout(75);
+        
         foreach ($process as $type => $data) {
             if ($process::OUT === $type) {
                 echo "\nRead from stdout: ".$data;
+        
             } 
             else { // $process::ERR === $type
                 echo "\nRead from stderr: ".$data;
             }
+            $process->stop(3);
         }
+       
+        $myfile = fopen("scripts\scrapedTweets.txt", "a") or die("Unable to open file!");
+        $old_str = $data;
+        $new_str="";
+        $str='';
+        $new_str=str_replace("j","",$old_str);
+        // echo '<br>';
+        // echo "new=".$new_str;
+        $old_str = '';
+        fwrite($myfile,$new_str);
+        fclose($myfile);
+        
+        return Redirect::action('TweetsController@livechart');
+        // $iterator = $process->getIterator($process::ITER_SKIP_ERR | $process::ITER_KEEP_OUTPUT);
+        // foreach ($iterator as $data) {
+        //     echo $data."\n";
+        // }
     }
     public function livechart(){
 
@@ -100,5 +121,73 @@ class TweetsController extends Controller
 
             return view('livechart')->with('chart',$chart);
     }
+    public function updateValue(Schedule $schedule){
+        // $myfile = fopen("scripts\scrapedTweetsSentiments.txt", "r+") or die("Unable to open file!");
+        // $data = fread($myfile,filesize("scripts\scrapedTweetsSentiments.txt"));
+        // $pos = substr_count($data, "pos");
+        // $neg = substr_count($data, "neg");
+        // fwrite();
+        // fclose($myfile);
+        $schedule->call('App\Http\Controllers\TweetsController@updateValue')->everyMinute();
+    }
+    public static function updateJSON(){
+        sleep(2);
+        $myfile = fopen("scripts\scrapedTweets.txt", "r") or die("Unable to open file!");
+        $str = fread($myfile,filesize("scripts\scrapedTweets.txt"));
+        fclose($myfile);
+        $str=str_replace("\n","",$str);
+        $str=str_replace("\r","",$str);
+        // echo $str;
+        $str2 = explode(" ", $str);
+        // return $str2;
+        foreach($str2 as $word){
+            $myJSON = fopen("json/values.json", "r") or die("Unable to open file!");
+            $contents = fread($myJSON,filesize("json/values.json"));
+            fclose($myJSON);
+            // $contents = Storage::disk('chartJSON')->get('values.json');
+            $data = json_decode($contents,true); 
+            // return $data['value'];
+            $val = $data['value'];
+            
+            if($word == 'pos'){
+                $val=$val+1;
+            }
+            else if($word == 'neg'){
+                $val=$val-1;
+            }
+            
+            $data['value'] = $val;
+            $content = json_encode($data,true);
+            // Storage::disk('chartJSON')->put('values.json', $content);      //store json(write original file)
+            $myJSON = fopen("json/values.json", "w") or die("Unable to open file!");
+            fwrite($myJSON,$content);
+            fclose($myJSON);
+            sleep(2);
+        }
+        file_put_contents("scripts\scrapedTweets.txt", "");
+        // $myfile = fopen("scripts\scrapedTweets.txt", "w") or die("Unable to open file!");
+        // fwrite($myfile,"");
+        // fclose($myfile);
+    }
 }
-
+// public static function updateJSON(){
+//     $myfile = fopen("json/values.json", "r") or die("Unable to open file!");
+//     $contents = fread($myJSON,filesize("json/values.json"));
+//         $myJSON = fopen("json/values.json", "r") or die("Unable to open file!");
+//         $contents = fread($myJSON,filesize("json/values.json"));
+//         fclose($myJSON);
+//         // $contents = Storage::disk('chartJSON')->get('values.json');
+//         $data = json_decode($contents,true); 
+//         // return $data['value'];
+//         $val = $data['value'];
+//         $val=$val+1;
+//         $data['value'] = $val;
+//         $content = json_encode($data,true);
+//         // Storage::disk('chartJSON')->put('values.json', $content);      //store json(write original file)
+//         $myJSON = fopen("json/values.json", "w") or die("Unable to open file!");
+//         fwrite($myJSON,$content);
+//         fclose($myJSON);
+//         sleep(2);
+//     }
+    
+// }
