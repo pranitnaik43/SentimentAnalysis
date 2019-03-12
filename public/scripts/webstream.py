@@ -1,3 +1,4 @@
+import sys
 import tweepy
 from tweepy import Stream
 from tweepy.streaming import StreamListener
@@ -51,7 +52,7 @@ class listener(StreamListener):
         else:
             sentiment_value,confidence=t.sentiment(tweet)
             print(sentiment_value,"\n")
-            print("j"*500)
+            print("j"*100)
             #print (tweet.encode('utf8')) 
             #print(tweet.encode('utf8'),sentiment_value,confidence,"\n\n\n")
             #f=open("twitter-out.txt",'a')
@@ -70,7 +71,9 @@ auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
 
 twitterStream = Stream(auth, listener(),tweet_mode='extended')
-twitterStream.filter(track=["modi"])
+topic = sys.argv
+##print(topic[1])
+twitterStream.filter(track=[topic[1]])
 
 
 

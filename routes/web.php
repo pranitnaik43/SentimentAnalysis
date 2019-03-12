@@ -15,11 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('getTopic','TweetsController@getTopic');
-Route::post('display','TweetsController@display');
+Route::post('scrape','TweetsController@scrape');
 Route::get('index/{sentiment}/{topic}','TweetsController@index');
-Route::get('live','TweetsController@live');
+Route::post('live','TweetsController@live');
+Route::get('getLiveTopic','TweetsController@getLiveTopic');
 Route::get('livechart', 'TweetsController@livechart');
-Route::get('updateValue', 'TweetsController@updateValue');
+Route::get('callFunc', 'TweetsController@callFunc');
 Route::get('updateJSON', 'TweetsController@updateJSON');
 
 //==============<Requirements>=======================
@@ -45,4 +46,5 @@ Route::get('updateJSON', 'TweetsController@updateJSON');
 // composer require consoletvs/charts:5.*
 //link:  https://laravelcode.com/post/laravel-5-chart-example-using-charts-package
 // documentation: https://github.com/ConsoleTVs/Charts/tree/5.4.0/docs/5
+// https://devhub.io/repos/ConsoleTVs-Charts
 //===============</charts>===========================

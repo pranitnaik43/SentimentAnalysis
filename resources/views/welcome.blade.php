@@ -1,4 +1,11 @@
-<!doctype html>
+@extends('layouts.app')
+
+@section('content')
+        <a href="getTopic" class="btn btn-primary">Scrape</a>
+        <a href="getLiveTopic" class="btn btn-primary">Live</a>
+@endsection
+
+{{-- <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -96,4 +103,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action ="{{ action('TweetsController@scrape') }}", method = 'POST' style="width:100%">
+    <form action ="{{ action('TweetsController@live') }}", method = 'POST' style="width:100%">
         @csrf
         <div class="d-flex justify-content-center" style="border:black">
         <label>Topic</label>
@@ -10,4 +10,3 @@
         </div>
     </form>
 @endsection
-        

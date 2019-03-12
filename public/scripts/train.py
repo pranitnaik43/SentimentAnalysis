@@ -11,9 +11,10 @@ import nltk
 import random
 import pickle
 from nltk.classify.scikitlearn import SklearnClassifier
-from sklearn.naive_bayes import MultinomialNB, BernoulliNB
-from sklearn.linear_model import LogisticRegression
-from sklearn.svm import SVC,LinearSVC,NuSVC
+from sklearn.naive_bayes import MultinomialNB
+# , BernoulliNB
+#from sklearn.linear_model import LogisticRegression
+#from sklearn.svm import SVC,LinearSVC,NuSVC
 from nltk.classify import ClassifierI
 from statistics import mode
 from nltk.tokenize import word_tokenize
@@ -121,9 +122,9 @@ save_classifier=open("NaiveBayesClassifier.pickle","wb")
 pickle.dump(classifier,save_classifier)
 save_classifier.close()'''
 
-NaiveBayesClassifier_pickle=open("scripts\\NaiveBayesClassifier.pickle","rb")
+'''NaiveBayesClassifier_pickle=open("scripts\\NaiveBayesClassifier.pickle","rb")
 classifier=pickle.load(NaiveBayesClassifier_pickle)
-NaiveBayesClassifier_pickle.close()
+NaiveBayesClassifier_pickle.close()'''
 
 #2
 '''MNB_classifier=SklearnClassifier(MultinomialNB())
@@ -147,9 +148,9 @@ save_BernoulliNB_classifier=open("BernoulliNBClassifier.pickle","wb")
 pickle.dump(BernoulliNB_classifier,save_BernoulliNB_classifier)
 save_BernoulliNB_classifier.close()'''
 
-BernoulliNB_pickle=open("scripts\\BernoulliNBClassifier.pickle","rb")
+'''BernoulliNB_pickle=open("scripts\\BernoulliNBClassifier.pickle","rb")
 BernoulliNB_classifier=pickle.load(BernoulliNB_pickle)
-BernoulliNB_pickle.close()
+BernoulliNB_pickle.close()'''
 
 #4
 '''LogisticRegression_classifier = SklearnClassifier(LogisticRegression(solver='lbfgs'))
@@ -160,9 +161,9 @@ save_LogisticRegression_classifier = open("LogisticRegression.pickle","wb")
 pickle.dump(LogisticRegression_classifier, save_LogisticRegression_classifier)
 save_LogisticRegression_classifier.close()'''
 
-LogisticRegression_pickle=open("scripts\\LogisticRegression.pickle","rb")
+'''LogisticRegression_pickle=open("scripts\\LogisticRegression.pickle","rb")
 LogisticRegression_classifier=pickle.load(LogisticRegression_pickle)
-LogisticRegression_pickle.close()
+LogisticRegression_pickle.close()'''
 
 #5
 '''LinearSVC_classifier = SklearnClassifier(LinearSVC())
@@ -173,9 +174,9 @@ save_LinearSVC_classifier = open("LinearSVC.pickle","wb")
 pickle.dump(LinearSVC_classifier, save_LinearSVC_classifier)
 save_LinearSVC_classifier.close()'''
 
-LinearSVC_pickle=open("scripts\\LinearSVC.pickle","rb")
+'''LinearSVC_pickle=open("scripts\\LinearSVC.pickle","rb")
 LinearSVC_classifier=pickle.load(LinearSVC_pickle)
-LinearSVC_pickle.close()
+LinearSVC_pickle.close()'''
 
 '''#6
 SGDC_classifier = SklearnClassifier(SGDClassifier())
@@ -195,9 +196,9 @@ save_NuSVC_classifier = open("NuSVC.pickle","wb")
 pickle.dump(NuSVC_classifier, save_NuSVC_classifier)
 save_NuSVC_classifier.close()'''
 
-NuSVC_pickle=open("scripts\\NuSVC.pickle","rb")
+'''NuSVC_pickle=open("scripts\\NuSVC.pickle","rb")
 NuSVC_classifier=pickle.load(NuSVC_pickle)
-NuSVC_pickle.close()
+NuSVC_pickle.close()'''
 
 '''voted_classifier = VoteClassifier(
                                   classifier,

@@ -5,10 +5,21 @@ use \App\Http\Controllers\TweetsController;
     <head>
     <title>Live</title>
     <script>
-        // $(".panel-body").load(function() {
-        //     new get_fb();
-        //     });
-        function get_fb(){
+        function perform(){
+            // new getSentiment();
+            // // alert("hi");
+            new updateVal();
+        }
+        // function perform(){
+        //     window.setInterval(function(){
+        //         new getSentiment();
+        //         window.setTimeout(function(){
+        //             new updateVal();
+        //         }, 5000);
+        //     }, 1000);
+        // }
+
+        function updateVal(){
         var feedback = $.ajax({//Ajax
                                 type: "GET",
                                 url: 'updateJSON',
@@ -16,11 +27,26 @@ use \App\Http\Controllers\TweetsController;
                                 data: {_token: '{!! csrf_token() !!}'},
                                 }).responseText;//end of ajax
         }
-        
+        function getSentiment(){
+        var feedback = $.ajax({//Ajax
+                                type: "GET",
+                                url: 'callFunc',
+                                dataType: 'json',
+                                data: {_token: '{!! csrf_token() !!}'},
+                                success:function() {
+                                console.log("worked");
+                            },
+                        }).responseText;//end of ajax
+        }
+        // window.setInterval(function(){
+        //     new updateVal();
+        // },50000);
     </script>
 
     </head>
-    <body onload="get_fb()">
+    <body onload="perform()">
+    {{-- <body onload="updateVal()"> --}}
+    {{-- <body> --}}
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
