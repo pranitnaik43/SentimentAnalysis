@@ -1,5 +1,7 @@
-<html>
-    <body>
+@extends('layouts.app')
+
+@section('content')
+    <div id="pie">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -15,5 +17,5 @@
         </div>
         {!! Charts::scripts() !!}
         {!! $chart->script() !!}
-    </body>
-</html>
+    </div>
+@endsection

@@ -1,6 +1,3 @@
-#import sys
-#sys.path.append('C:\\Users\\Pranit\\AppData\\Local\\Programs\\Python\\Python37\\lib\\site-packages')
-#sys.path.append('C:\\Users\\Pranit\\AppData\\Roaming')
 import nltk
 import random
 import pickle

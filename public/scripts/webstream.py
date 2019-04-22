@@ -13,8 +13,8 @@ from mtranslate import translate
 
 ckey="8VLe8MUqkihVa9U3qYxC2gKEH"
 csecret="E1VtWGJc8iwruA3PtdI4yKr31zfXzy7crY2fDmZnpkqPNyyq7N"
-atoken="1084819911690670080-0WYnWemEzkRcMHVn7rtIoGlc5X8fBg"
-asecret="L45s4CKveIfj8H1We6tZbZn7JkQn39JHaNUMPAcnw8yQ3"
+atoken="1084819911690670080-RykI5SQWOV3qySqTuEJBoKxHRQgfqw"
+asecret="9QkFELINiNzLH8sOxguti31VyBxinbgWIxcUpaxoHtgbO"
 
 #translator=Translator()
 class listener(StreamListener):

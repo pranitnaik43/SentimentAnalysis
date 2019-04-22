@@ -18,6 +18,7 @@ Route::get('getTopic','TweetsController@getTopic');
 Route::post('scrape','TweetsController@scrape');
 Route::get('index/{sentiment}/{topic}','TweetsController@index');
 Route::post('live','TweetsController@live');
+Route::get('live2','TweetsController@live2');
 Route::get('getLiveTopic','TweetsController@getLiveTopic');
 Route::get('livechart', 'TweetsController@livechart');
 Route::get('callFunc', 'TweetsController@callFunc');
@@ -48,3 +49,6 @@ Route::get('updateJSON', 'TweetsController@updateJSON');
 // documentation: https://github.com/ConsoleTVs/Charts/tree/5.4.0/docs/5
 // https://devhub.io/repos/ConsoleTVs-Charts
 //===============</charts>===========================
+
+
+Route::get('/test',"TweetsController@test");

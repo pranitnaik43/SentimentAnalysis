@@ -1,0 +1,36 @@
+body{
+    background-image: url("Budget2.jpg");
+    /* background-repeat: no-repeat; */
+    background-size: 100% auto;
+    color: white;
+}
+#box{    
+    border-color: gold !important;
+    border: solid;
+    width:200px;
+    padding: 20px;
+    position: relative;
+    top: 20vh;
+    left: 30vw;
+}
+a{
+    margin-right: 10px;
+    /* margin-bottom: 20px;
+    margin-top: 10px; */
+}
+#box2{    
+    border-color: gold !important;
+    border: solid;
+    width:400px;
+    padding: 20px;
+    position: relative;
+    top: 20vh;
+    left: 30vw;
+}
+input[type="text"]
+{
+    background: transparent;
+    border-color: gold;
+    width: 100% !important;
+    /* border: none; */
+}

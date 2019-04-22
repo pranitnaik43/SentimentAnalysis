@@ -3,44 +3,61 @@ use \App\Http\Controllers\TweetsController;
 ?>
 <html>
     <head>
+    <link href = "{{ asset('css/page.css') }}" rel="stylesheet">
     <title>Live</title>
     <script>
         function perform(){
-            // new getSentiment();
-            // // alert("hi");
             new updateVal();
+            new getSentiment();
+            // alert("hi");
+            
         }
-        // function perform(){
-        //     window.setInterval(function(){
-        //         new getSentiment();
-        //         window.setTimeout(function(){
-        //             new updateVal();
-        //         }, 5000);
-        //     }, 1000);
-        // }
+        // setInterval(function(){ alert("Hello"); }, 3000);
+        // setInterval(new perform(), 3000);
+        // setInterval(function(){ alert("Hello"); }, 3000);
+        // window.setTimeout(function(){
+        //     new updateVal();
+        // }, 5000);
 
         function updateVal(){
-        var feedback = $.ajax({//Ajax
+            // alert("update val");
+            var feedback = $.ajax({//Ajax
                                 type: "GET",
                                 url: 'updateJSON',
                                 dataType: 'json',
                                 data: {_token: '{!! csrf_token() !!}'},
+                                success: function(){
+                                    // alert("updated");
+                                },
+
+                            // complete: function() {
+                            //     alert("updated");
+                            // // Schedule the next request when the current one's complete
+                            // }
                                 }).responseText;//end of ajax
+        // setInterval(new updateVal(), 10000);
         }
         function getSentiment(){
-        var feedback = $.ajax({//Ajax
+            // alert("get sentiments");
+            var feedback = $.ajax({//Ajax
                                 type: "GET",
-                                url: 'callFunc',
+                                url: 'live2',
                                 dataType: 'json',
                                 data: {_token: '{!! csrf_token() !!}'},
                                 success:function() {
-                                console.log("worked");
+                                // alert("got sentiments");
                             },
                         }).responseText;//end of ajax
+            // var feedback = $.ajax({//Ajax
+            //                     type: "POST",
+            //                     url: 'live',
+            //                     dataType: 'json',
+            //                     data: {_token: '{!! csrf_token() !!}'},
+            //                     success:function() {
+            //                     alert("got sentiments");
+            //                 },
+            //             }).responseText;//end of ajax
         }
-        // window.setInterval(function(){
-        //     new updateVal();
-        // },50000);
     </script>
 
     </head>
