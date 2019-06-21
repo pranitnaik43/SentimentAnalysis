@@ -10,8 +10,8 @@ body{
     width:200px;
     padding: 20px;
     position: relative;
-    top: 20vh;
-    left: 30vw;
+    top: 40vh;
+    left: 40vw;
 }
 a{
     margin-right: 10px;
@@ -24,8 +24,8 @@ a{
     width:400px;
     padding: 20px;
     position: relative;
-    top: 20vh;
-    left: 30vw;
+    top: 40vh;
+    left: 40vw;
 }
 input[type="text"]
 {

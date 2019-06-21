@@ -62,7 +62,7 @@ class TweetsController extends Controller
         // $chart = Charts::database($users, 'pie', 'highcharts')
         $chart = Charts::create('pie', 'highcharts')
 			      ->title($topic)
-                //   ->elementLabel("Sentiment")
+                  ->elementLabel("Sentiment")
                   ->labels(['positive', 'negative'])
                   ->values([$pos, $neg])
                   ->colors(['#00ff00','#ff0000'])
@@ -119,13 +119,13 @@ class TweetsController extends Controller
         //     ->title("Twitter")
         //     ->valueName('value'); //This determines the json index for the value
         $chart = Charts::realtime(url('json/values.json'), 2000, 'line', 'highcharts')
-            ->elementLabel("Opinion")
             // ->values([65,0,100])
             // ->labels(['First', 'Second', 'Third'])
+            ->title("Trump")
+            ->elementLabel("Sentiment")
             ->responsive(false)
             ->height(400)
             ->width(0)
-            ->title("Twitter")
             ->maxValues(100)
             ->valueName('value'); //This determines the json index for the value
 
